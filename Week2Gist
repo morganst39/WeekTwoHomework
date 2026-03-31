@@ -35,10 +35,21 @@ public class WeekTwoHomework {
 }
 
 //(C) A method that queries for Opportunity records that returns results in a map format.
-public static Map<Id, Opportunity> getOppMap() {
-    return new Map<Id, Opportunity>([
+    public static void Map<Id, Opportunity> getOppMap() {
+    Map<Id, Opportunity> oppMap = new Map<Id, Opportunity>([
         SELECT Id, Name, StageName, CloseDate
-        FROM Opportunity]);
+        FROM Opportunity
+    ]);
+    
+    return oppMap;
 }
-           
 //(D) An aggregate results query that returns an integer equal to the total number of open opportunities in your org.
+//i am getting issue compiling this method with missing signature error 
+      public static void OpportunityAggreg() {
+       Integer OppCount = [
+        SELECT COUNT()
+        FROM Opportunity
+        WHERE NOT StageName LIKE 'Closed%'];  //stage name to exclude closed won or closed lost
+    
+        System.debug('We have ' + OppCount + ' Opportunities that are still open');
+      }
